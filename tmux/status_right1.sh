@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PLAYING="$(mpc -f "%artist% - %title%" current)"
+PLAYING="$(ncmpcpp --now-playing "%a - %t")"
 
 echo "[MPD] ${PLAYING:-Nothing playing}"
 
