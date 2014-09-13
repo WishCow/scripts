@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd "$(tmux showenv "$(tmux display -p "TMUX_PWD_#D")" | cut -d= -f2-)"
+cd "$(tmux showenv -g "$(tmux display -p "TMUX_PWD_#D")" | cut -d= -f2-)"
 
 [[ -d $PWD/.git ]] || exit
 S_BG=colour234
@@ -8,7 +8,7 @@ S_BG=colour234
 if [[ -f $PWD/.git/MERGE_HEAD ]]; then
     FG='#000000'
     BG='#fcf946'
-    printf "#[fg=$S_BG,bg=$BG]⮀#[fg=$FG,bg=colour$BG,bold] ⌥  #[fg=$BG,bg=$FG]⮀"
+    printf "#[fg=$S_BG,bg=$BG]#[fg=$FG,bg=colour$BG,bold] ⌥  #[fg=$BG,bg=$FG]"
 fi
 
 REBASE=($PWD/.git/rebase-{merge,apply})
@@ -23,7 +23,7 @@ if [[ -n $REBASE_DIR ]]; then
     BG='#fcf946'
     CURRENT=$(cat "$REBASE_DIR"/next)
     LAST=$(cat $REBASE_DIR/last)
-    printf "#[fg=$S_BG,bg=$BG]⮀#[fg=$FG,bg=colour$BG,bold] rebase ($CURRENT/$LAST) #[fg=$BG,bg=$FG]⮀"
+    printf "#[fg=$S_BG,bg=$BG]#[fg=$FG,bg=colour$BG,bold] rebase ($CURRENT/$LAST) #[fg=$BG,bg=$FG]"
 fi
 
-printf '#[fg=colour235,bg=colour252]⮀#[fg=colour235,bg=colour252]  %s ' $(git rev-parse --abbrev-ref HEAD)
+printf '#[fg=colour235,bg=colour252]#[fg=colour235,bg=colour252]  %s ' $(git rev-parse --abbrev-ref HEAD)
