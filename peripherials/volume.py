@@ -10,7 +10,7 @@ if len(sys.argv) < 2:
     sys.exit(1)
 
 notification_id = 9998
-dunstify = "{}/local/dunstify".format(getenv('HOME'))
+dunstify = getenv('HOME') + "/bin/dunstify"
 max_volume = 100
 
 def notif(message, icon=None):

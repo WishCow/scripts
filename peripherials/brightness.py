@@ -11,7 +11,7 @@ if len(sys.argv) < 2:
 
 icon = "info"
 notification_id = 9999
-dunstify = "{}/local/dunstify".format(getenv('HOME'))
+dunstify = getenv('HOME') + "/bin/dunstify"
 
 try:
     delta = sys.argv[1]
