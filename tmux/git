@@ -26,4 +26,11 @@ if [[ -n $REBASE_DIR ]]; then
     printf "#[fg=$S_BG,bg=$BG]#[fg=$FG,bg=colour$BG,bold] rebase ($CURRENT/$LAST) #[fg=$BG,bg=$FG]"
 fi
 
+STASHES=$(git stash list | wc -l)
+if [ "$STASHES" -gt 0 ]; then
+    FG='#000000'
+    BG='#fcf946'
+    printf "#[fg=$S_BG,bg=$BG]#[fg=$FG,bg=colour$BG,bold] S: $STASHES #[fg=$BG,bg=$FG]"
+fi
+
 printf '#[fg=colour235,bg=colour252]#[fg=colour235,bg=colour252]  %s ' $(git rev-parse --abbrev-ref HEAD)
