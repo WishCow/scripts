@@ -1,3 +1,5 @@
+#!/bin/python
+
 from subprocess import call, check_output, Popen, PIPE
 from pprint import pprint
 import re, sys

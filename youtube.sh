@@ -1,7 +1,16 @@
 #!/bin/bash -eu
 
-URL="$1"
+# Download a video from youtube, extract the audio stream to MP3
+# and add ID3 tags on it. Needs youtube-dl to work, and id3v2 to tag.
+
+usage() {
+    printf 'Usage: %s URL [ARTIST] [SONG]' "$0"
+    exit 1
+}
+
+URL="${1:-}"
 shift
+[ -z "$URL" ] && usage
 
 ARTIST="${1:-}"
 if [ -n "$ARTIST" ]; then
