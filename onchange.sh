@@ -12,6 +12,20 @@ usage() {
     exit 1
 }
 
+expr index $- e > /dev/null
+ERREXIT=$?
+
+cleanup() {
+    if [ "$ERREXIT" -gt 0 ]; then
+        set -e
+    else
+        set +e
+    fi
+}
+
+trap cleanup HUP INT QUIT ABRT TERM
+
+
 [[ -z $DIR || -z $PATTERN ]] && usage
 
 if [ -f "$DIR" ]; then
@@ -29,6 +43,7 @@ COMMAND="$1"
 shift
 
 printf "Watching %s for changes in files matching %s\nRunning: %s %s\n" "$DIR" "$PATTERN" "$COMMAND" "$*"
+set +e
 while read changed_file; do
     if [[ $changed_file =~ $PATTERN ]]; then
         "$COMMAND" "$@"
