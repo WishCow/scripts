@@ -1,12 +1,7 @@
 #!/bin/bash
 
-if [ "$1" == "ergo" ]; then
-    setxkbmap -layout hu,no,us -option grp:alt_shift_toggle,caps:escape
-    xmodmap ~/.xmodmap.ergo
-else
-    setxkbmap -layout hu,no,us -option grp:alt_shift_toggle
-    xmodmap ~/.xmodmap
-fi
+setxkbmap -layout hu,no,us -option grp:alt_shift_toggle
+xmodmap ~/.xmodmap
 
 killall xcape
 xcape -e 'Control_L=Escape' -t 110
