@@ -4,7 +4,6 @@ IFACE=${1:-}
 
 if [[ -n "$BLOCK_BUTTON" ]]; then
     urxvt -title "WiFi menu" -e sh -c "sudo wifi-menu"
-    echo ""
 fi
 
 [[ ! -e /sys/class/net/$IFACE ]] && (
